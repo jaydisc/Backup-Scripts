@@ -1,0 +1,3 @@
+#!/bin/bash
+/bin/cat /var/log/backup-psql.log
+exit 0

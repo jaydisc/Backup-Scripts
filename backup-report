@@ -1,0 +1,8 @@
+#!/bin/bash
+ssh host '/usr/local/bin/backup-report'
+/usr/local/bin/backup-df
+/usr/local/bin/backup-postqueue
+/usr/local/bin/backup-backupd
+/usr/local/bin/backup-mysql
+/usr/local/bin/backup-rsync
+exit 0;

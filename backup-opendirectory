@@ -1,0 +1,11 @@
+#!/usr/bin/expect -f
+set timeout 300
+set date [timestamp -format "%u"]
+set archive_path "/Library/Server/Backups/OpenDirectory"
+set archive_password "yourmom"
+set archive_name "OpenDirectory_Day_"
+
+spawn /usr/sbin/slapconfig -backupdb $archive_path/$archive_name$date
+expect "Enter archive password"
+send "$archive_password\r"
+expect eof

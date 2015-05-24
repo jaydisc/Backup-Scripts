@@ -1,0 +1,28 @@
+#!/bin/bash
+OPTIONS="-a --stats --timeout=300 --delete-after --delete-excluded"
+
+echo "Rsync Backup on $HOSTNAME"
+echo "========================="
+echo `/bin/date` "*** Syncing VPS"
+rsync $OPTIONS /etc home:thepracticeofcode.net
+rsync $OPTIONS /var home:thepracticeofcode.net \
+     --exclude=/var/cache/ \
+     --exclude=/var/lib/amavis/.spamassassin/bayes* \
+     --exclude=/var/lib/amavis/.spamassassin/auto-whitelist \
+     --exclude=/var/lib/amavis/tmp \
+     --exclude=/var/lib/apt/ \
+     --exclude=/var/lib/clamav/ \
+     --exclude=/var/lib/cyrus/proc/ \
+     --exclude=/var/lib/dpkg/info/ \
+     --exclude='/var/lib/mysql/*/*.frm' \
+     --exclude='/var/lib/mysql/*/*.MY[DI]' \
+     --exclude=/var/lib/php5/ \
+     --exclude=/var/lib/ucf/cache/ \
+     --exclude=/var/lock/ \
+     --exclude=/var/run/ \
+     --exclude=/var/spool/postfix/ \
+     --exclude=/var/tmp/ \
+     --exclude=cache/
+echo `/bin/date` "*** Done Syncing VPS"
+echo
+exit 0

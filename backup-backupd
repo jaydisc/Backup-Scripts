@@ -1,0 +1,10 @@
+echo "Time Machine for $HOSTNAME";
+echo "============================================="
+grep 'Backup completed successfully' /var/log/system.log | tail -5
+echo "";
+echo "Earlist and Latest Backups"
+echo "============================================="
+ls /Volumes/Backup\ HD\ */Backups.backupdb/Office/ | head -n 2
+ls /Volumes/Backup\ HD\ */Backups.backupdb/Office/ | grep -v Latest | tail -n 2
+echo;
+exit 0;

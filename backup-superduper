@@ -1,0 +1,38 @@
+#!/usr/bin/python
+## The script was written by Dr. Drang: http://www.leancrew.com/all-this/2014/05/a-slightly-better-superduper-summary/
+## I only have it repeated here because I depend on it so regularly.
+
+sd_user = "noone"
+sd_script = "Smart Update Secondary HD from Primary HD.sdsp"
+
+import os
+
+# Where the SuperDuper! log files are.
+logdir =  ("/Users/" + sd_user + "/Library/Application Support/SuperDuper!/Scheduled Copies/" + sd_script + "/Logs/")
+
+print "SuperDuper: " + sd_script
+print "=================================="
+
+def sdinfo(s):
+  "Return just the timestamp and process information from a SuperDuper line."
+  parts = s.split('|')
+  ratespot = parts[3].find("at an effective transfer rate")
+  if ratespot > -1:
+    parts[3] = parts[3][:ratespot]
+  detailspot = parts[3].find("(")
+  if detailspot > -1:
+    parts[3] = parts[3][:detailspot]
+  return "%s: %s" % (parts[1].strip(), parts[3].strip(' \\\n'))
+
+# Get the last log file.
+logfiles = [x for x in os.listdir(logdir) if x[-5:] == 'sdlog']
+logfiles.sort()
+lastlog = logdir + logfiles[-1]
+
+with open(lastlog) as f:
+  for line in f:
+    for signal in ["Started on", "PHASE:", "Copied", "Cloned", "Copy complete"]:
+        if signal in line:
+          print sdinfo(line)
+
+print

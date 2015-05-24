@@ -1,0 +1,2 @@
+#!/bin/bash
+/usr/local/bin/backup-report | /usr/bin/mail -s 'Backup Report' 'support@example.com'
