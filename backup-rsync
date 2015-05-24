@@ -3,9 +3,9 @@ OPTIONS="-a --stats --timeout=300 --delete-after --delete-excluded"
 
 echo "Rsync Backup on $HOSTNAME"
 echo "========================="
-echo `/bin/date` "*** Syncing VPS"
-rsync $OPTIONS /etc home:thepracticeofcode.net
-rsync $OPTIONS /var home:thepracticeofcode.net \
+echo `/bin/date`
+rsync $OPTIONS /etc home:$HOSTNAME
+rsync $OPTIONS /var home:$HOSTNAME \
      --exclude=/var/cache/ \
      --exclude=/var/lib/amavis/.spamassassin/bayes* \
      --exclude=/var/lib/amavis/.spamassassin/auto-whitelist \
@@ -23,6 +23,6 @@ rsync $OPTIONS /var home:thepracticeofcode.net \
      --exclude=/var/spool/postfix/ \
      --exclude=/var/tmp/ \
      --exclude=cache/
-echo `/bin/date` "*** Done Syncing VPS"
+echo `/bin/date`
 echo
 exit 0

@@ -1,4 +1,16 @@
 #!/bin/bash
+
+## THIS SCRIPT IS ONLY SUITABLE FOR OS X Lion Server and early versions of OS X Server for Mountain Lion.
+## SEE THE MAVERICKS VERSION for Mavericks and Yosemite
+##
+## Keep a rolling seven days of backups of the individual databases for the services in OS X Server that use PostgreSQL
+##
+## Profile Manager: devicemgr_v2m0
+## Wiki: collab
+## Calendar and Contacts: caldav
+##
+## Don't forget to device your backup directory.
+
 backupdir='/Library/Server/Backups/PostgreSQL/';
 day=`/bin/date +%u`;
 mkdir -p $backupdir/$day;

@@ -1,4 +1,8 @@
 #!/bin/bash
+
+## Keep a rolling seven days of backups of MySQL
+## Use a client file or the built in debian file to set the appropriate permissions
+
 backupdir=/var/backups/mysql
 #clientfile=/etc/mysql/myclient.cnf
 clientfile=/etc/mysql/debian.cnf

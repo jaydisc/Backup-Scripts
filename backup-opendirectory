@@ -1,9 +1,14 @@
 #!/usr/bin/expect -f
-set timeout 300
-set date [timestamp -format "%u"]
+## Keep a rolling seven days of backups of the Open Directory Data
+## Don't forget to see the first three variables as desired.
+## The archive password is the password set for the disk image. It is not a password in your directory.
+
 set archive_path "/Library/Server/Backups/OpenDirectory"
 set archive_password "yourmom"
 set archive_name "OpenDirectory_Day_"
+
+set timeout 300
+set date [timestamp -format "%u"]
 
 spawn /usr/sbin/slapconfig -backupdb $archive_path/$archive_name$date
 expect "Enter archive password"

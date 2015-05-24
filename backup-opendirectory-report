@@ -2,7 +2,6 @@
 echo "OpenDirectory Backup for $HOSTNAME"
 echo "=================================="
 /usr/bin/tail +2 /var/log/backup-opendirectory.log | /usr/bin/head -4
-#/usr/bin/head -n 5 /var/log/backup-opendirectory.log
 echo '...'
 /usr/bin/tail -n 4 /var/log/backup-opendirectory.log
 echo
