@@ -7,7 +7,7 @@
 ##
 ## Don't forget to device your backup directory.
 
-backupdir="/Volumes/Second HD/Groups/Archive/PostgreSQL";
+backupdir="/Library/Server/Backups/PostgreSQL";
 server_root="/Applications/Server.app/Contents/ServerRoot";
 
 day=`date +%u`;
@@ -21,12 +21,12 @@ echo -n "Backing up devicemgr... "
 $server_root/usr/bin/pg_dump -U _devicemgr -h /Library/Server/ProfileManager/Config/var/PostgreSQL/ -c devicemgr_v2m0 | gzip -c > "$backupdir/$day/devicemgr_v2m0.sql.gz";
 echo "Done."
 
-echo -n "Backing up collab... "
-$server_root/usr/bin/pg_dump -U _teamsserver -h /Library/Server/Wiki/PostgresSocket/ -c collab | gzip -c > "$backupdir/$day/collab.sql.gz";
-echo "Done."
-
 echo -n "Backing up caldav... "
 $server_root/usr/bin/pg_dump -U caldav -h /var/run/caldavd/PostgresSocket/ -c caldav | gzip -c > "$backupdir/$day/caldav.sql.gz";
+echo "Done."
+
+echo -n "Backing up collab... "
+$server_root/usr/bin/pg_dump -U _teamsserver -h /Library/Server/Wiki/PostgresSocket/ -c collab | gzip -c > "$backupdir/$day/collab.sql.gz";
 echo "Done."
 
 chmod -R 600 "$backupdir/$day";
