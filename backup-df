@@ -1,6 +1,7 @@
 #!/bin/bash
 echo "Disk Space on $HOSTNAME";
 echo "=================================================="
-df -h | grep -E '^dev|^File|^map';
+df -Ph | grep -vE '^dev|^map';
 echo;
 exit 0;
+
