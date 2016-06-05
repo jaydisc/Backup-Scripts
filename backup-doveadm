@@ -1,0 +1,3 @@
+#!/bin/bash
+# Delete any email in the Quarantine inbox that is more than 60 days old
+/Applications/Server.app/Contents/ServerRoot/usr/bin/doveadm -v expunge -u quarantine mailbox INBOX sentbefore 60d
