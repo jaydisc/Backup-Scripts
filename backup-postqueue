@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Postfix Queue on $HOSTNAME";
 echo "==========================";
-/usr/sbin/postqueue -p | /bin/grep "^[0123456789ABCDEF-].*"
-echo;
+/usr/sbin/postqueue -p | /usr/bin/grep -E "^([0123456789ABCDEF-].*|Mail)"
+echo
 exit 0;
