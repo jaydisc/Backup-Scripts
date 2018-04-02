@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Disk Space on $HOSTNAME";
 echo "=================================================="
-df -Ph | grep -vE '^dev|^map';
+/bin/df -PHl | /usr/bin/grep -vE '^com\.apple\.TimeMachine';
 echo;
 exit 0;
 
