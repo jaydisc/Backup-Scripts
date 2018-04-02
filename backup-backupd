@@ -1,17 +1,21 @@
 #!/bin/bash
+
 ## Show any recent successful backups.
 ## Then show the oldest and newest snapshows on your backup drive.
-
-backup_drive="Time Machine Backups";
-machine_name="Tina";
+machine_name="`/usr/sbin/system_profiler SPSoftwareDataType | /usr/bin/grep 'Computer Name' | /usr/bin/awk '{print $3}'`";
 
 echo "Time Machine for $HOSTNAME";
 echo "============================================="
-/usr/bin/grep 'Backup completed successfully' /var/log/system.log | /usr/bin/tail -5
+# Are we running an OS that contains the log command? If so, use it
+if /usr/bin/which log | grep -q '/usr/bin/log'; then
+	/usr/bin/log show --predicate 'subsystem == "com.apple.TimeMachine"' --last 24h --style syslog --info | /usr/bin/grep -E '(successful)' | /usr/bin/tail -5
+else
+	/usr/bin/grep 'Backup completed successfully' /var/log/system.log | /usr/bin/tail -5
+fi
 echo "";
 echo "Earlist and Latest Backups"
 echo "============================================="
-/bin/ls "/Volumes/$backup_drive/Backups.backupdb/$machine_name/" | /usr/bin/head -n 2
-/bin/ls "/Volumes/$backup_drive/Backups.backupdb/$machine_name/" | /usr/bin/grep -v Latest | /usr/bin/tail -n 2
+/bin/ls /Volumes/*/Backups.backupdb/$machine_name/ | /usr/bin/head -n 2
+/bin/ls /Volumes/*/Backups.backupdb/$machine_name/ | /usr/bin/grep -v Latest | /usr/bin/tail -n 2
 echo;
 exit 0;
