@@ -1,0 +1,41 @@
+#!/bin/bash
+## Keep a rolling seven days of backups of the individual databases for the services in OS X Server that use PostgreSQL
+##
+## Profile Manager: devicemgr_v2m0
+## Wiki: collab
+## Calendar and Contacts: caldav
+##
+## Don't forget to device your backup directory.
+
+if [[ $EUID -ne 0 ]]; then
+	 echo "This script must be run as root" 
+	 exit 1
+fi
+
+backupdir="/Library/Server/Backups/PostgreSQL";
+
+day=`/bin/date +%u`;
+mkdir -p "$backupdir/$day";
+
+echo "PostgreSQL Backup for $HOSTNAME";
+echo "================================="
+echo `/bin/date`;
+
+echo -n "Backing up devicemgr... "
+/Applications/Server.app/Contents/ServerRoot/usr/bin/pg_dump -U devicemgrd -h /Library/Server/ProfileManager/Config/var/PostgreSQL/ -c devicemgr_v2m0 | /usr/bin/gzip -c > "$backupdir/$day/devicemgr_v2m0.sql.gz";
+echo "Done."
+
+echo -n "Backing up caldav... "
+/Applications/Server.app/Contents/ServerRoot/usr/bin/pg_dump -U caldav -h /var/run/caldavd/PostgresSocket/ -c caldav | /usr/bin/gzip -c > "$backupdir/$day/caldav.sql.gz";
+echo "Done."
+
+echo -n "Backing up collab... "
+/Applications/Server.app/Contents/ServerRoot/usr/bin/pg_dump -U _teamsserver -h /Library/Server/Wiki/PostgresSocket/ -c collab | /usr/bin/gzip -c > "$backupdir/$day/collab.sql.gz";
+echo "Done."
+
+/bin/chmod -R 600 "$backupdir/$day";
+/bin/ls -lh "$backupdir/$day";
+
+echo `/bin/date`;
+echo;
+exit 0;
