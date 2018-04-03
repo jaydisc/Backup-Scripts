@@ -1,0 +1,22 @@
+#!/bin/bash
+
+LOG=/var/log/backup-report/backup-uptime.log
+LINES=48
+
+###################################
+
+# add an uptime to the bottom of the log
+echo "`date +%Y-%m-%d` `/usr/bin/uptime`" >> $LOG
+
+# if there's more than 24 entries (lines), truncate to lower 24
+# this method safeguards against log file getting out of control
+
+# check how many lines are in the log file
+if [ $[ `/usr/bin/wc -l < $LOG | /usr/bin/tr -d '[[:space:]]'` ] -gt $LINES ]; then
+
+	/bin/echo "`/usr/bin/tail -n $LINES $LOG`" > $LOG
+
+fi
+
+exit 0;
+

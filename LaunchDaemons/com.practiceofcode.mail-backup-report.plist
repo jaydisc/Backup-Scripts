@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Disabled</key>
+	<true/>
+	<key>Label</key>
+	<string>com.practiceofcode.mail-backup-report</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/local/bin/mail-backup-report</string>
+	</array>
+	<key>RunAtLoad</key>
+	<false/>
+	<key>StartCalendarInterval</key>
+	<dict>
+		<key>Hour</key>
+		<integer>06</integer>
+		<key>Minute</key>
+		<integer>45</integer>
+	</dict>
+	<key>AbandonProcessGroup</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>/var/log/backup-report/mail-backup-report.log</string>
+	<key>StandardOutPath</key>
+	<string>/var/log/backup-report/mail-backup-report.log</string>
+</dict>
+</plist>
+
