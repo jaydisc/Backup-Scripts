@@ -1,8 +1,8 @@
 #!/bin/bash
 echo "OpenDirectory Backup for $HOSTNAME"
 echo "=================================="
-/usr/bin/tail +2 /var/log/backup-opendirectory.log | /usr/bin/head -4
+/usr/bin/tail +2 /var/log/backup-report/backup-opendirectory.log | /usr/bin/head -4
 echo '...'
-/usr/bin/tail -n 4 /var/log/backup-opendirectory.log
+/usr/bin/tail -n 4 /var/log/backup-report/backup-opendirectory.log
 echo
 exit 0;

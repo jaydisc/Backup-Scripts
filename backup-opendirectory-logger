@@ -1,2 +1,2 @@
 #!/bin/bash
-/usr/local/bin/backup-opendirectory > /var/log/backup-opendirectory.log
+/usr/local/bin/backup-opendirectory > /var/log/backup-report/backup-opendirectory.log

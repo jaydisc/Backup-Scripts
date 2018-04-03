@@ -1,2 +1,2 @@
 #!/bin/bash
-/usr/local/bin/backup-psql > /var/log/backup-psql.log
+/usr/local/bin/backup-psql > /var/log/backup-report/backup-psql.log
