@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "Listserver retry queue for $HOSTNAME";
+echo "===================================="
+/bin/ls /Library/Server/Mail/Data/listserver/messages/retry/
+echo
+exit 0;
