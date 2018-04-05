@@ -1,0 +1,9 @@
+#!/bin/bash
+# If your server is on an APFS volume, it probably doesn't like berkeley DBs very much.
+# You should move these to an HFS volume.
+# This will look in the server folder for any that might be getting out of hand.
+echo "Potentially Large Berkeley DBs on $HOSTNAME";
+echo "============================================="
+/usr/bin/find /Library/Server -size +128k -name *.db -exec ls -lh {} \;
+echo
+exit 0;
