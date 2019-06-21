@@ -12,6 +12,9 @@ rsync $OPTIONS /etc $DESTINATION:"$HOSTNAME" \
     --exclude="/etc/shadow" \
     --exclude="/etc/gshadow"
 
+echo "Syncing home…"
+rsync $OPTIONS /home $DESTINATION:"$HOSTNAME"
+
 echo "Syncing usr/local…"
 rsync $OPTIONS /usr/local $DESTINATION:"$HOSTNAME/usr/"
 
