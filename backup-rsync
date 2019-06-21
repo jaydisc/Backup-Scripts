@@ -13,7 +13,9 @@ rsync $OPTIONS /etc $DESTINATION:"$HOSTNAME" \
     --exclude="/etc/gshadow"
 
 echo "Syncing home…"
-rsync $OPTIONS /home $DESTINATION:"$HOSTNAME"
+rsync $OPTIONS /home $DESTINATION:"$HOSTNAME" \
+    --exclude=".npm/_cacache/" \
+    --exclude=".vscode-server"
 
 echo "Syncing usr/local…"
 rsync $OPTIONS /usr/local $DESTINATION:"$HOSTNAME/usr/"
