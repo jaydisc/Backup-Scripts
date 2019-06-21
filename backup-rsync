@@ -1,17 +1,22 @@
 #!/bin/bash
 
 OPTIONS="-az --stats --timeout=300 --delete-after --delete-excluded"
-DESTINATION="home"
+DESTINATION="ffo"
 
 echo "Rsync Backup on $HOSTNAME"
 echo "========================="
 echo `/bin/date`
+echo "Syncing etc…"
 rsync $OPTIONS /etc $DESTINATION:"$HOSTNAME"
+echo "Syncing usr/local…"
+rsync $OPTIONS /usr/local $DESTINATION:"$HOSTNAME:usr/"
+echo "Syncing var…"
 rsync $OPTIONS /var $DESTINATION:"$HOSTNAME" \
-     --exclude="/var/cache/" \
-     --exclude="/var/lib/amavis/.spamassassin/bayes*" \
+     --exclude="cache/" \
+     --exclude=".git/objects/" \
      --exclude="/var/lib/amavis/.spamassassin/auto-whitelist" \
      --exclude="/var/lib/amavis/tmp" \
+     --exclude="/var/lib/amazon/ssm/Vault/Store/" \
      --exclude="/var/lib/apt/" \
      --exclude="/var/lib/clamav/" \
      --exclude="/var/lib/cyrus/proc/" \
@@ -24,7 +29,9 @@ rsync $OPTIONS /var $DESTINATION:"$HOSTNAME" \
      --exclude="/var/run/" \
      --exclude="/var/spool/postfix/" \
      --exclude="/var/tmp/" \
-     --exclude="cache/"
+     --exclude="/var/www/demo.fireflyeducation.com.au/" \
+     --exclude="/var/www/online.fireflyeducation.com.au/" \
+     --exclude="/var/www/staging.fireflyeducation.com.au/"
 echo `/bin/date`
 echo
 exit 0
