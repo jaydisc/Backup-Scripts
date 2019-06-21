@@ -6,32 +6,38 @@ DESTINATION="ffo"
 echo "Rsync Backup on $HOSTNAME"
 echo "========================="
 echo `/bin/date`
+
 echo "Syncing etc…"
-rsync $OPTIONS /etc $DESTINATION:"$HOSTNAME"
+rsync $OPTIONS /etc $DESTINATION:"$HOSTNAME" \
+    --exclude="/etc/shadow" \
+    --exclude="/etc/gshadow"
+
 echo "Syncing usr/local…"
-rsync $OPTIONS /usr/local $DESTINATION:"$HOSTNAME:usr/"
+rsync $OPTIONS /usr/local $DESTINATION:"$HOSTNAME/usr/"
+
 echo "Syncing var…"
 rsync $OPTIONS /var $DESTINATION:"$HOSTNAME" \
-     --exclude="cache/" \
-     --exclude=".git/objects/" \
-     --exclude="/var/lib/amavis/.spamassassin/auto-whitelist" \
-     --exclude="/var/lib/amavis/tmp" \
-     --exclude="/var/lib/amazon/ssm/Vault/Store/" \
-     --exclude="/var/lib/apt/" \
-     --exclude="/var/lib/clamav/" \
-     --exclude="/var/lib/cyrus/proc/" \
-     --exclude="/var/lib/dpkg/info/" \
-     --exclude="/var/lib/mysql/*/*.frm" \
-     --exclude="/var/lib/mysql/*/*.MY[DI]" \
-     --exclude="/var/lib/php5/" \
-     --exclude="/var/lib/ucf/cache/" \
-     --exclude="/var/lock/" \
-     --exclude="/var/run/" \
-     --exclude="/var/spool/postfix/" \
-     --exclude="/var/tmp/" \
-     --exclude="/var/www/demo.fireflyeducation.com.au/" \
-     --exclude="/var/www/online.fireflyeducation.com.au/" \
-     --exclude="/var/www/staging.fireflyeducation.com.au/"
+    --exclude="cache/" \
+    --exclude=".git/objects/" \
+    --exclude="/var/lib/amavis/.spamassassin/auto-whitelist" \
+    --exclude="/var/lib/amavis/tmp" \
+    --exclude="/var/lib/amazon/ssm/Vault/Store/" \
+    --exclude="/var/lib/apt/" \
+    --exclude="/var/lib/clamav/" \
+    --exclude="/var/lib/cyrus/proc/" \
+    --exclude="/var/lib/dpkg/info/" \
+    --exclude="/var/lib/mysql/*/*.frm" \
+    --exclude="/var/lib/mysql/*/*.MY[DI]" \
+    --exclude="/var/lib/php5/" \
+    --exclude="/var/lib/ucf/cache/" \
+    --exclude="/var/lock/" \
+    --exclude="/var/run/" \
+    --exclude="/var/spool/postfix/" \
+    --exclude="/var/tmp/" \
+    --exclude="/var/www/demo.fireflyeducation.com.au/" \
+    --exclude="/var/www/online.fireflyeducation.com.au/" \
+    --exclude="/var/www/staging.fireflyeducation.com.au/"
+
 echo `/bin/date`
 echo
 exit 0
