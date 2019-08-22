@@ -1,10 +1,10 @@
 #!/bin/bash
 /usr/local/bin/backup-stats > /var/log/backup.log
 /usr/local/bin/backup-df >> /var/log/backup.log
-# /usr/local/bin/backup-postqueue >> /var/log/backup-other.log
+/usr/local/bin/backup-postqueue >> /var/log/backup.log
 
 # send this to a separate log
-# /usr/local/bin/tlc-notify-trialers > /var/log/backup-notifications.log
+/usr/local/bin/tlc-notify-trialers > /var/log/backup-notifications.log
 
 /usr/local/bin/backup-mysql >> /var/log/backup.log
 /usr/local/bin/backup-rsync >> /var/log/backup.log
