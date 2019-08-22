@@ -5,10 +5,10 @@
 
 backupdir=/var/backups/mysql
 clientfile=/etc/mysql-backup.cnf
+day="daily/"`date +%a`
 
 echo "MySQL Backup on $HOSTNAME";
 echo "======================";
-day=`date +%u`
 mkdir -p $backupdir/$day
 for database in `echo "show databases" | mysql --defaults-file=$clientfile | grep -vE 'Database|information_schema|performance_schema'`;
 	do

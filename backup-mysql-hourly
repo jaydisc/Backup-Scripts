@@ -1,0 +1,26 @@
+#!/bin/bash
+
+## Keep a rolling 24 hours of backups of MySQL
+## Use a client file or the built in debian file to set the appropriate permissions
+
+backupdir=/var/backups/mysql
+clientfile=/etc/mysql-backup.cnf
+day="hourly/"`date +%H`
+
+# echo "MySQL Backup on $HOSTNAME";
+# echo "======================";
+mkdir -p $backupdir/$day
+for database in `echo "show databases" | mysql --defaults-file=$clientfile | grep -vE 'Database|information_schema|performance_schema'`;
+	do
+	# echo -n "Exporting $database..."
+	mysqldump --defaults-file=$clientfile -c $database | gzip -c  > $backupdir/$day/$database.sql.gz
+#	if test -e "$backupdir/$day/$database.sql.gz"
+#		then
+#		echo -n "cleaning..."
+#		rm $backupdir/$day/$database.sql.gz
+#	fi
+#	echo -n "compressing..."
+#	gzip $backupdir/$day/$database.sql
+	# echo "done"
+done
+# echo
