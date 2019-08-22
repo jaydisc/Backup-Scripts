@@ -4,7 +4,7 @@
 /usr/local/bin/backup-postqueue >> /var/log/backup.log
 
 # send this to a separate log
-# /usr/local/bin/tlc-notify-trialers > /var/log/backup-notifications.log
+/usr/local/bin/tlc-notify-trialers > /var/log/backup-notifications.log
 
 /usr/local/bin/backup-mysql-daily >> /var/log/backup.log
 /usr/local/bin/backup-rsync >> /var/log/backup.log
