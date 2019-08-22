@@ -17,7 +17,6 @@ rsync $OPTIONS /home $DESTINATION:"$HOSTNAME" \
     --exclude=".npm/_cacache/" \
     --exclude=".vscode-server"
 
-
 echo "Syncing usr/local…"
 rsync $OPTIONS /usr/local $DESTINATION:"$HOSTNAME/usr/"
 
