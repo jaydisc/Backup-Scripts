@@ -13,14 +13,14 @@ mkdir -p $backupdir/$day
 for database in `echo "show databases" | mysql --defaults-file=$clientfile | grep -vE 'Database|information_schema|performance_schema'`;
 	do
 	echo -n "Exporting $database..."
-	mysqldump --defaults-file=$clientfile -c $database | gzip -c  > $backupdir/$day/$database.sql.gz
-#	if test -e "$backupdir/$day/$database.sql.gz"
-#		then
-#		echo -n "cleaning..."
-#		rm $backupdir/$day/$database.sql.gz
-#	fi
-#	echo -n "compressing..."
-#	gzip $backupdir/$day/$database.sql
+	mysqldump --defaults-file=$clientfile --skip-lock-tables -c $database | gzip -c  > $backupdir/$day/$database.sql.gz
+	# if test -e "$backupdir/$day/$database.sql.gz"
+	# 	then
+	# 	echo -n "cleaning..."
+	# 	rm $backupdir/$day/$database.sql.gz
+	# fi
+	# echo -n "compressing..."
+	# gzip $backupdir/$day/$database.sql
 	echo "done"
 done
 echo
