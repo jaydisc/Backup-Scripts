@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "Uptime Report for $HOSTNAME"
 echo "=================================="
-/bin/cat /var/log/backup-report/backup-uptime.log
+/bin/cat /var/log/backup-uptime.log
 echo
 exit 0

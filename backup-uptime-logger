@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LOG=/var/log/backup-report/backup-uptime.log
+LOG=/var/log/backup-uptime.log
 LINES=48
 
 ###################################
