@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OPTIONS="-aHz --stats --timeout=300 --delete-after --delete-excluded"
+OPTIONS="-aHzv --stats --timeout=300 --delete-after --delete-excluded"
 DESTINATION="ffo"
 
 echo "Rsync Backup on $HOSTNAME"
@@ -26,15 +26,17 @@ rsync $OPTIONS /var $DESTINATION:"$HOSTNAME" \
     --exclude=".git/objects/" \
     --exclude="/var/lib/amavis/.spamassassin/auto-whitelist" \
     --exclude="/var/lib/amavis/tmp" \
-    --exclude="/var/lib/amazon/ssm/Vault/Store/" \
+    --exclude="/var/lib/amazon/" \
     --exclude="/var/lib/apt/" \
     --exclude="/var/lib/clamav/" \
     --exclude="/var/lib/cyrus/proc/" \
     --exclude="/var/lib/dpkg/info/" \
+    --exclude="var/lib/lxcfs/" \
     --exclude="/var/lib/mysql/*/*.frm" \
     --exclude="/var/lib/mysql/*/*.MY[DI]" \
     --exclude="/var/lib/php5/" \
     --exclude="/var/lib/ucf/cache/" \
+    --exclude="/var/lib/snapd/void" \
     --exclude="/var/lock/" \
     --exclude="/var/run/" \
     --exclude="/var/spool/postfix/" \

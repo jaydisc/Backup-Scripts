@@ -4,7 +4,7 @@
 ## Use a client file or the built in debian file to set the appropriate permissions
 
 backupdir=/var/backups/mysql
-clientfile=/etc/mysql-backup.cnf
+clientfile=/etc/mysql/debian.cnf
 day="daily/"`date +%a`
 
 echo "MySQL Backup on $HOSTNAME";
