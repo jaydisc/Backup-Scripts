@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Clear out the old log
+/bin/echo > /var/log/backup.log
+
+# Build the new log
+/usr/local/bin/backup-postqueue >> /var/log/backup.log
+/usr/local/bin/backup-df >> /var/log/backup.log
+/usr/local/bin/backup-logins >> /var/log/backup.log
+/usr/local/bin/backup-mysql-daily >> /var/log/backup.log
+/usr/local/bin/backup-rsync >> /var/log/backup.log
+/usr/local/bin/backup-uptime-report >> /var/log/backup.log
+
+# send this to a separate log
+# /usr/local/bin/tlc-notify-trialers > /var/log/backup-notifications.log
+
+exit 0
