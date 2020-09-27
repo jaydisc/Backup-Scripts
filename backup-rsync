@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# archive mode; equals -rlptgoD (no -H,-A,-X)
 OPTIONS="-aHz --stats --timeout=300 --delete-after --delete-excluded"
 DESTINATION="ffo"
 
@@ -11,14 +12,23 @@ echo "Syncing etc…"
 rsync $OPTIONS /etc $DESTINATION:"$HOSTNAME" \
     --exclude="/etc/shadow" \
     --exclude="/etc/gshadow"
+echo
 
 echo "Syncing home…"
 rsync $OPTIONS /home $DESTINATION:"$HOSTNAME" \
     --exclude=".npm/_cacache/" \
+    --exclude=".cache/" \
     --exclude=".vscode-server"
+echo
+
+echo "Syncing opt/git"
+rsync $OPTIONS /opt/git $DESTINATION:"$HOSTNAME/opt/" \
+    --exclude="online.broken.git/"
+echo
 
 echo "Syncing usr/local…"
 rsync $OPTIONS /usr/local $DESTINATION:"$HOSTNAME/usr/"
+echo
 
 echo "Syncing var…"
 rsync $OPTIONS /var $DESTINATION:"$HOSTNAME" \
@@ -42,6 +52,7 @@ rsync $OPTIONS /var $DESTINATION:"$HOSTNAME" \
     --exclude="/var/www/demo.fireflyeducation.com.au/" \
     --exclude="/var/www/online.fireflyeducation.com.au/" \
     --exclude="/var/www/staging.fireflyeducation.com.au/"
+echo
 
 echo `/bin/date`
 echo
