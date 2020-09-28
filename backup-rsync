@@ -21,10 +21,12 @@ rsync $OPTIONS /home $DESTINATION:"$HOSTNAME" \
     --exclude=".vscode-server"
 echo
 
-echo "Syncing opt/git"
-rsync $OPTIONS /opt/git $DESTINATION:"$HOSTNAME/opt/" \
-    --exclude="online.broken.git/"
-echo
+if [ -d "/opt/git" ]; then
+	echo "Syncing opt/git"
+	rsync $OPTIONS /opt/git $DESTINATION:"$HOSTNAME/opt/" \
+		--exclude="online.broken.git/"
+	echo
+fi
 
 echo "Syncing usr/local…"
 rsync $OPTIONS /usr/local $DESTINATION:"$HOSTNAME/usr/"
