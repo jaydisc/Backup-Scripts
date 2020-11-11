@@ -38,7 +38,7 @@ rsync $OPTIONS /var $DESTINATION:"$HOSTNAME" \
     --exclude=".git/objects/" \
     --exclude="/var/lib/amavis/.spamassassin/auto-whitelist" \
     --exclude="/var/lib/amavis/tmp" \
-    --exclude="/var/lib/amazon/ssm/Vault/Store/" \
+    --exclude="/var/lib/amazon/ssm" \
     --exclude="/var/lib/apt/" \
     --exclude="/var/lib/clamav/" \
     --exclude="/var/lib/cyrus/proc/" \
