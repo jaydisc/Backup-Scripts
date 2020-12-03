@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # archive mode; equals -rlptgoD (no -H,-A,-X)
-OPTIONS="-aHz --stats --timeout=300 --delete-after --delete-excluded"
+OPTIONS="-aHhz --stats --timeout=300 --delete-after --delete-excluded"
 DESTINATION="ffo"
 
 echo "Rsync Backup on $HOSTNAME"
