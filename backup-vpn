@@ -1,0 +1,3 @@
+#!/bin/bash
+/Applications/Server.app/Contents/ServerRoot/usr/sbin/serveradmin settings vpn | grep -iv secretvalue > /Library/Server/Backups/VPN/Settings.txt
+exit 0
