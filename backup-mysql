@@ -4,14 +4,13 @@
 ## Use a client file or the built in debian file to set the appropriate permissions
 
 backupdir=/var/backups/mysql
-#clientfile=/etc/mysql/myclient.cnf
-clientfile=/etc/mysql/debian.cnf
+clientfile=/etc/mysql-backup.cnf
 
 echo "MySQL Backup on $HOSTNAME";
 echo "======================";
 day=`date +%u`
 mkdir -p $backupdir/$day
-for database in `echo "show databases" | mysql --defaults-file=$clientfile | grep -vE 'Database|information_schema'`;
+for database in `echo "show databases" | mysql --defaults-file=$clientfile | grep -vE 'Database|information_schema|performance_schema'`;
 	do
 	echo -n "Exporting $database..."
 	mysqldump --defaults-file=$clientfile -c $database | gzip -c  > $backupdir/$day/$database.sql.gz
