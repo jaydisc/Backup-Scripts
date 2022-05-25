@@ -2,6 +2,17 @@
 
 echo "Listserver retry queue for $HOSTNAME";
 echo "===================================="
-/bin/ls /Library/Server/Mail/Data/listserver/messages/retry/
+echo
+echo 'Inbound'
+echo "-------"
+/bin/ls -l /Library/Server/Mail/Data/listserver/messages/inbound/* | /usr/bin/grep -vE ".lock_file|^total|^$|.*:$"
+echo
+echo 'Hold'
+echo "-------"
+/bin/ls -l /Library/Server/Mail/Data/listserver/messages/hold/
+echo
+echo 'Retry'
+echo "-------"
+/bin/ls -l /Library/Server/Mail/Data/listserver/messages/retry/
 echo
 exit 0;
