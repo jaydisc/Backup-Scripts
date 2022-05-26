@@ -1,6 +1,10 @@
 #!/bin/bash
 echo "Logins for $HOSTNAME";
 echo "==================================================";
-last -5;
+echo "NOW:";
+/usr/bin/who;
+echo;
+echo "RECENT:";
+/usr/bin/last -5;
 echo;
 exit 0;
