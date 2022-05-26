@@ -1,0 +1,13 @@
+#!/bin/bash
+
+OPTIONS="-avz --stats --timeout=300 --delete-after"
+DESTINATION="office"
+
+echo "Rsync Backup FileMaker on $HOSTNAME"
+echo "========================="
+/bin/date
+/usr/bin/rsync $OPTIONS "/Library/FileMaker Server/Data/Backups/" $DESTINATION:"Backups/" \
+    --exclude="/.*"
+/bin/date
+echo
+exit 0
