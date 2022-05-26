@@ -1,0 +1,6 @@
+#!/bin/bash
+echo "Logins for $HOSTNAME";
+echo "==================================================";
+last -5;
+echo;
+exit 0;
