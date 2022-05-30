@@ -1,0 +1,35 @@
+#!/bin/bash
+
+REPO_DIRECTORY='/Volumes/Promise/Work/Backup/Repos'
+
+# OPTIONS="-az --stats --timeout=300 --delete-after --delete-excluded"
+# DESTINATION="home"
+
+echo "CodeCommit Backup"
+echo "========================="
+/bin/date;
+cd "$REPO_DIRECTORY" || exit 1;
+
+# echo "Testing AWS Command…"
+# /usr/local/bin/aws codecommit --output text list-repositories
+# echo 'Test concluded. Looping if successful…';
+
+for REPO in $(/usr/local/bin/aws codecommit --output text list-repositories | /usr/bin/awk '{print $3}');
+	do
+	echo -n "Backing up $REPO.git… "
+	if [ -d "$REPO" ]
+	then
+		echo -n " exists… fetching… ";
+		cd "$REPO" || exit 1;
+		/usr/bin/git fetch --progress;
+		cd "$REPO_DIRECTORY" || exit 1;
+		echo 'done';
+	else
+		echo " does not exist… cloning…";
+		/usr/bin/git clone "ssh://git-codecommit.ap-southeast-2.amazonaws.com/v1/repos/$REPO"
+		echo 'done';
+	fi
+done
+/bin/date;
+echo
+exit 0
