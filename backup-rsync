@@ -1,7 +1,7 @@
 #!/bin/bash
 
-OPTIONS="-aHz --stats --timeout=300 --delete-after --delete-excluded"
-DESTINATION="ffo"
+OPTIONS="-rltD -Hvz --stats --timeout=300 --delete-after --delete-excluded"
+DESTINATION="office"
 
 echo "Rsync Backup on $HOSTNAME"
 echo "========================="
