@@ -1,7 +1,16 @@
 #!/bin/bash
 echo "CCC Task Activity on $HOSTNAME";
 echo "==========================";
-'/Applications/Carbon Copy Cloner.app/Contents/MacOS/ccc' -h | /usr/bin/head
+'/Applications/Carbon Copy Cloner.app/Contents/MacOS/ccc' -h | /usr/bin/head -8| /usr/bin/awk -F\| '{ print $7 "\t\t" $4 "\t" $3" ← "$2 " (" $6 ")"}';
+
+# echo "SUCCESS:"
+# '/Applications/Carbon Copy Cloner.app/Contents/MacOS/ccc' -h | /usr/bin/grep 'Success' | /usr/bin/head -5 | /usr/bin/awk -F\| '{ print $4 "\t" $3" ← "$2 " (" $6 ")"}';
+#
+# echo
+# echo "FAIL:"
+# '/Applications/Carbon Copy Cloner.app/Contents/MacOS/ccc' -h | /usr/bin/grep 'Failed' | /usr/bin/head -5 | /usr/bin/awk -F\| '{ print $4 "\t" $3" ← "$2}';
+
+# Luke:
 #/usr/bin/awk '/exit_status/ { print $2, "  ", $7, "  ", $11, $12, $13, $14, $15, "\t", $10 }' '/Library/Application Support/com.bombich.ccc/pht_debug.log' | /usr/bin/tail -18 | /usr/bin/sort;
 echo
 exit 0;

@@ -1,7 +1,6 @@
 #!/bin/bash
 echo "Disk Space on $HOSTNAME";
 echo "=================================================="
-/bin/df -PHl | /usr/bin/grep -vE '^com\.apple\.TimeMachine';
+/bin/df -PHl | /usr/bin/grep -vE '^com\.apple\.TimeMachine' | /usr/bin/grep -E "(Filesystem|([89][0-9]|100)%)"
 echo;
 exit 0;
-
